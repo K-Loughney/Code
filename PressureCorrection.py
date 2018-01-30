@@ -10,7 +10,7 @@ import pandas as pd
 import datetime as dt
 import matplotlib.pyplot as plt
 import mpl_toolkits.axisartist as AA
-import weather_underground_parser as wp
+import weather_underground_parser as wp      ## https://github.com/casteer/weather_underground_parser
 from mpl_toolkits.axes_grid1 import host_subplot
 
 TS = []
@@ -66,7 +66,8 @@ d2 = np.floor(np.asarray(s[:])/60./60.)*60.*60.
 d2hr = pd.to_datetime(d2, unit = 's')
 df2 = pd.DataFrame(d2hr)
 TDiff2 = df.diff() 
-       
+
+##To Obtain the hourly countrate:
 while len(d2hr)>0:
     indie = (d2hr==d2hr[0])
     D2HR.append(d2hr[0])
@@ -77,9 +78,9 @@ while len(d2hr)>0:
 R = len(D2HR)
 r = len(HrE)
 
-time2 = []
-P0 = 1000
-A =132
+
+P0 = 1000 #Standard Pressure
+A =132    #Atmospheric Constant
 
 for i,x in enumerate(d2):    
     counttime = (dt.datetime.fromtimestamp(x))  ##Event time from dataset
